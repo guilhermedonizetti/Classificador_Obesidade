@@ -12,9 +12,6 @@ class ClassificadorObesidade:
 
         i = dados
 
-        print("----------\n{}\n-----------".format(dados))
-        print("Dado: {}\n".format(i[3]))
-        print("Tipo: {}\n".format(type(i[3])))
         if i[3] <= 99.530971:
             if i[3] <= 60:
                 if i[2] <= 1.66:
@@ -206,24 +203,6 @@ class ClassificadorObesidade:
         for i in  range(len(dados)):
             
             x = dados[i]
-
-            # if x == 'Sim':
-            #     dados[i] = 'Sim'
-                
-            # if x == 'Não':
-            #     dados[i] = 'Não'
-                
-            # if x == 'Sempre':
-            #     dados[i] = 'Sempre'
-                
-            # if x == 'Às vezes':
-            #     dados[i] = 'Às vezes'
-                
-            # if x == 'Frequentemente':
-            #     dados[i] = 'Frequentemente'
-                
-            # if x == 'Nunca':
-            #     dados[i] = 'Nunca'
                 
             if x == 'Entre 1 e 2':
                 dados[i] = 1
@@ -266,27 +245,6 @@ class ClassificadorObesidade:
                 
             if x == 'Mais de 5 horas':
                 dados[i] = 2
-                
-            # if x == 'Carro':
-            #     dados[i] = 'Automobile'
-                
-            # if x == 'Moto':
-            #     dados[i] = 'Moto'
-                
-            # if x == 'Bicicleta':
-            #     dados[i] = 'Bicicleta'
-                
-            # if x == 'Transporte público':
-            #     dados[i] = 'Transporte público'
-                
-            # if x == 'Caminhada':
-            #     dados[i] = 'Caminhada'
-                
-            # if x == 'Feminino':
-            #     dados[i] = 'Feminino'
-                
-            # if x == 'Masculino':
-            #     dados[i] = 'Masculino'
 
         return dados
     
@@ -300,24 +258,31 @@ class ClassificadorObesidade:
 
         Retorno: string
         """
+        criticidade = 0
 
         dados_novo = self.renomear_respostas(dados)
         obesidade = self.arvore_J48(dados_novo)
 
         if obesidade == 'Insufficient_Weight':
             obesidade = 'Peso Insuficiente'
+            criticidade = 1
         if obesidade == 'Normal_Weight':
             obesidade = 'Peso Normal'
         if obesidade == 'Overweight_Level_I':
             obesidade = 'Sobrepeso Nível I'
+            criticidade = 1
         if obesidade == 'Overweight_Level_II':
             obesidade = 'Sobrepeso Nível II'
+            criticidade = 2
         if obesidade == 'Obesity_Type_I':
             obesidade = 'Obesidade Tipo I'
+            criticidade = 3
         if obesidade == 'Obesity_Type_II':
             obesidade = 'Obesidade Tipo II'
+            criticidade = 4
         if obesidade == 'Obesity_Type_III':
             obesidade = 'Obesidade Tipo III'
+            criticidade = 5
         
-        return obesidade                
+        return obesidade, criticidade               
             

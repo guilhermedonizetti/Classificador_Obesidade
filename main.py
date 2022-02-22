@@ -32,16 +32,34 @@ class InterfaceClassificador:
             tempo_em_dipositivos, consumo_de_alcool, meio_de_transporte
         ]
 
-        print("*******\n{}\n********".format(respostas_da_pessoa))
+        resultado, criticidade = self.funcoes.classificar_obesidade(respostas_da_pessoa)
 
-        resultado = self.funcoes.classificar_obesidade(respostas_da_pessoa)
+        self.dados(resultado, criticidade)
 
-        self.dados(resultado)
+    def dados(self, resultado, criticidade):
+        st.title("CLASSIFICADOR DE OBESIDADE")
 
-    def dados(slef, a):
-        st.write(a)
+        if resultado != "Peso Normal":
+            st.metric(label="Peso", value=resultado, delta="- nível de criticidade: {}".format(criticidade))
+            if resultado == "Obesidade Tipo III":
+                st.error("Atenção :loudspeaker:  As suas informações apresentam um quadro crítico para a sua saúde.")
+            else:
+                st.warning("Atenção :mega:  É necessário dar mais atenção à sua saúde. O texto abaixo pode te ajudar!")
+            st.write("Agora que você sabe a situação do seu peso, é interessante que você execute as tarefas necessárias de atenção à sua saúde.")
+            st.write("Use as opções do menu ao lado para fazer combinações que cheguem ao peso normal, assim você pode saber o quanto ou o quê deve mudar para chegar ao peso recomendado :blush:")
+        else:
+            botao = False
+            st.metric(label="Peso", value=resultado, delta="{} (nível de criticidade)".format(criticidade))
+            st.success("Parabéns :tada:")
+            st.write("Você atingiu um nível saudável considerando suas características e hábitos. Lembre-se que isso é apenas uma dedução com 93,4% de assertividade, vale a pena sempre estar atento à sua saúde!")
+            st.write("Está feliz com seu resultado? Vamos comemorar juntos!")
+            
+            if botao == False:
+                x = st.button("Comemorar")
+                if x == True:
+                    st.balloons()
 
-
-obj = InterfaceClassificador()
-obj.questionario()
+if __name__ == "__main__":
+    obj = InterfaceClassificador()
+    obj.questionario()
 
