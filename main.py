@@ -17,8 +17,8 @@ class InterfaceClassificador:
         fumante = st.sidebar.selectbox("Você fuma?", ["Não", "Sim"])
         monitoramento_de_calorias = st.sidebar.selectbox("Tem  costume de monitorar o consumo diário de calorias?", ["Sim", "Não"])
         obesidade_na_familia = st.sidebar.selectbox("Existe casos de obesidade em sua família?", ["Não", "Sim"])
-        atividades_fisicas = st.sidebar.selectbox("Com que frequência faz atividades físicas na semana", ["Não faço", "1 ou 2 dias", "3 ou 4 dias", "5 dias ou mais"])
-        tempo_em_dipositivos = st.sidebar.selectbox("Qual é o tempo que você fica com dispositivos digitais?", ["De 0 a 2 horas", "De 3 a 5 horas", "Mais de 5 horas"])
+        atividades_fisicas = st.sidebar.selectbox("Com que frequência faz atividades físicas na semana?", ["Não faço", "1 ou 2 dias", "3 ou 4 dias", "5 dias ou mais"])
+        tempo_em_dipositivos = st.sidebar.selectbox("Por quanto tempo você usa dispositivos digitais diariamente?", ["De 0 a 2 horas", "De 3 a 5 horas", "Mais de 5 horas"])
         meio_de_transporte = st.sidebar.selectbox("Qual meio de transporte você geralmente usa?", ["Carro", "Moto", "Bicicleta", "Transporte público", "Caminhada"])
         genero = st.sidebar.selectbox("Seu gênero: ", ["Feminino", "Masculino"])
         idade = st.sidebar.number_input("Idade: ", step=1, value=21, min_value=0, max_value=110)
@@ -51,7 +51,7 @@ class InterfaceClassificador:
             botao = False
             st.metric(label="Peso", value=resultado, delta="{} (nível de criticidade)".format(criticidade))
             st.success("Parabéns :tada:")
-            st.write("Você atingiu um nível saudável considerando suas características e hábitos. Lembre-se que isso é apenas uma dedução com 93,4% de assertividade, vale a pena sempre estar atento à sua saúde!")
+            st.write("Você atingiu um nível saudável considerando suas características e hábitos. Lembre-se de que isso é apenas uma dedução com 93,4% de assertividade. Vale a pena sempre estar atento à sua saúde!")
             st.write("Está feliz com seu resultado? Vamos comemorar juntos!")
             
             if botao == False:
