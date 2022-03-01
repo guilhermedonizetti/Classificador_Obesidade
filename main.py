@@ -8,6 +8,7 @@ class InterfaceClassificador:
         self.funcoes = ClassificadorObesidade()
 
     def questionario(self):
+        peso = st.sidebar.number_input("Peso (em kg): ", step=0.01, value=57.80, min_value=0.01)
         alimentos_caloricos = st.sidebar.selectbox("Frequentemente consome alimentos de grandes calorias?", ["Não", "Sim"])
         consumo_vegetais = st.sidebar.selectbox("Com que frequência consome vegetais?", ["Sempre", "Às vezes", "Nunca"])
         refeicoes_principais = st.sidebar.selectbox("Quantas refeições principais por dia?", ["Entre 1 e 2", "3 refeições", "Mais que 3"])
@@ -23,7 +24,6 @@ class InterfaceClassificador:
         genero = st.sidebar.selectbox("Seu gênero: ", ["Feminino", "Masculino"])
         idade = st.sidebar.number_input("Idade: ", step=1, value=21, min_value=0, max_value=110)
         altura = st.sidebar.number_input("Altura (em metros): ", step=0.01, value=1.78, min_value=0.01)
-        peso = st.sidebar.number_input("Peso (em kg): ", step=0.01, value=57.80, min_value=0.01)
 
         respostas_da_pessoa = [
             genero, idade, altura, float(peso), obesidade_na_familia, alimentos_caloricos,
